@@ -1,0 +1,14 @@
+[Unit]
+	Description=songkong auto start
+	After=multi.user.target
+
+[Service]
+	Type=simple
+	User=pi
+	WorkingDirectory=/opt/songkong
+	ExecStart=/bin/sh /opt/songkong/songkongremote.sh
+	Restart=always
+	RestartSec=60
+[Install]
+	WantedBy=multi-user.target
+

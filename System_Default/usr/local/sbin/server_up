@@ -1,0 +1,41 @@
+#!/bin/bash
+#==============================================================================================
+# serverctl by TomL*thlu.de
+#
+# Script-Name :  serverctl
+# Version     :  1.0
+# Date        :  31.07.2017
+# Lizenz      :  GNU GPL3
+# Description :  Check if given server is reachable
+#==============================================================================================
+
+[ -z "$1" ] && Server="8.8.8.8" || Server=$1
+echo "active/running   Server=$Server" | systemd-cat -t "thlu:`basename $0`" -p "info"
+
+timeout=85
+Diff=0
+HomeNetIsConnect=-1
+
+Start=$(date +%s);
+
+while [ true ]; do
+    /bin/ping -c1 -W1 -q $Server &>/dev/null
+    HomeNetIsConnect=$?
+
+    [ $HomeNetIsConnect -eq 0 ] && break
+    /bin/sleep 0.5
+
+    End=$(date +%s);
+    Diff=$((End-Start))
+    [[ Diff -gt timeout ]] && break
+done
+rc=0
+if [[ $HomeNetIsConnect -eq 0 ]]; then
+    echo "Host $Server is reachable! (RC:$HomeNetIsConnect, after $Diff Seconds wait)" | systemd-cat -t "thlu:`basename $0`" -p "info"
+else
+    echo "Host $Server is not reachable! (RC:$HomeNetIsConnect, after $Diff Seconds wait)" | systemd-cat -t "thlu:`basename $0`" -p "err"
+    rc=1
+fi
+
+echo "Successful terminated with exitcode=$rc" | systemd-cat -t "thlu:`basename $0`" -p "info"
+exit $rc

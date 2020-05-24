@@ -1,0 +1,12 @@
+[submodule "couchpotato/opt/CouchPotatoServer"]
+	path = couchpotato/opt/CouchPotatoServer
+	url = https://github.com/CouchPotato/CouchPotatoServer.git
+[submodule "headphones/opt/headphones"]
+	path = headphones/opt/headphones
+	url = https://github.com/rembo10/headphones
+[submodule "medusa/opt/medusa"]
+	path = medusa/opt/medusa
+	url = https://github.com/pymedusa/medusa.git
+[submodule "nzbmegasearch/opt/nzbmegasearch"]
+	path = nzbmegasearch/opt/nzbmegasearch
+	url = https://github.com/Mirabis/usntssearch

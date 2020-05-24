@@ -1,0 +1,12 @@
+[Unit]
+	Description=server_N1_up.service: Wartet auf Netzwerk und N1 bis erreichbar
+	After=network.target
+
+[Service]
+	Type=oneshot
+	TimeoutStartSec=95
+	ExecStart=/usr/local/sbin/server_up N1.<@FQDN@>
+
+[Install]
+	WantedBy=multi-user.target
+

@@ -1,0 +1,1 @@
+usb-storage.quirks=152d:0578:u console=serial0,115200 console=tty1 root=/dev/sda1 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait

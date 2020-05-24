@@ -1,0 +1,15 @@
+[Unit]
+	Description=cifs mount /NAS/N1/Log
+	Requires=network-online.target server_N1_up.service
+        After=network-online.service server_N1_up.service
+	Conflicts=shutdown.service
+	ConditionPathExists=/NAS/N1/Log
+
+[Mount] 
+	What=//N1.<@FQDN@>/Log
+	Where=/NAS/N1/Log
+	Options=credentials=/etc/smbcredentials_N1,uid=pi,vers=3.0,rw
+        Type=cifs
+
+[Install]
+        WantedBy=multi-user.target

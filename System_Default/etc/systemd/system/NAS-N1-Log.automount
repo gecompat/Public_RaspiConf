@@ -1,0 +1,12 @@
+[Unit]
+	Description=cifs mount /NAS/N1/Log
+	Requires=network-online.target
+	After=network-online.service
+
+[Automount]
+	Where=/NAS/N1/Log
+	TimeoutIdleSec=10
+
+[Install]
+	WantedBy=multi-user.target
+
