@@ -94,18 +94,20 @@ sudo systemctl start songkong.service
 Jetzt sollte man (nach einer kleinen Vorlaufzeit) mittels eines Browsers auf `http://songkong:4567` zugreifen.
 
 
-### Log und Config am Share "publizieren"
-Damit ich auch vom Laptop aus einen Log ansehen kann, einfach meine Einstellungen und Reports sichern kann, leite ich das alles  auf mein lokales Verzeichnis, das mittels Samba freigegeben ist um.
-Dazu muss sichergestellt sein, dass `follow symlinks = yes` in der smb.conf aktiviert ist.
-```bash
-ln -s /home/pi/.songkong /smbshare/songkong
-```
-
-
 ### Sicherung der Config mittels Git
 Damit nur das gesichert wird, was wirklich benötigt ist:
 ```bash
 sudo systemctl stop songkong.service
 cd /home/pi
 mv .songkong <Verzeichnis im Repository>
+ln -s <Verzeichnis im Repository> /home/pi/.songkong
 ```
+
+
+### Log und Config am Share "publizieren"
+Damit ich auch vom Laptop aus einen Log ansehen kann, einfach meine Einstellungen und Reports sichern kann, leite ich das alles  auf mein lokales Verzeichnis, das mittels Samba freigegeben ist um.
+Dazu muss sichergestellt sein, dass `follow symlinks = yes` in der smb.conf aktiviert ist.
+```bash
+ln -s <Verzeichnis im Repository> /smbshare/songkong
+```
+
