@@ -34,48 +34,55 @@ sudo systemctl status NAS-N1-Media-Film.mount
 Wenn das alles funktioniert hat, dann sollte man mittels `ls -la /NAS/N1/Media/Musik` auch die Daten sehen.
 Das gleiche mit dem Download Ordner
 
+## CouchPotato Installation:
 
-## couchpotato  TODO
-```bash
-cd /opt 
-http://www.jthink.net/songkong/de/download.jsp Headless! -> Link ermitteln 
-wget <Link>
-sudo mv <Link> SongKong_6.9.3_Mercury_20200515 
-sudo tar -xvzf SongKong_6.9.3_Mercury_20200515 
-sudo chown -R pi:pi songkong 
-cd /opt/songkong
+wie auf https://github.com/CouchPotato/CouchPotatoServer/
+
+beschrieben:
 ```
+
+sudo apt-get install python-lxml
+sudo apt-get install python-pip
+pip install --upgrade pyopenssl  ---> Fehler also:
+sudo apt-get install python-ndg-httpsclient
+sudo apt-get install python-service-identity
+cd /opt
+sudo git clone https://github.com/CouchPotato/CouchPotatoServer.git
+sudo chown -R pi:pi CouchPotatoServer/
+```
+
 
 ### über systemd starten  TODO
 Damit SongKong auch automatisch gestartet wird, benötge ich noch folgendes systemd Konfigfile
 ```bash
-sudo nano /etc/systemd/system/songkong.service
--------------- SNIP ----------------
+sudo nano /etc/systemd/system/couchpotato.service
+------------------- SNIP -------------------
 [Unit]
-	Description=songkong auto start
-	After=multi.user.target
+Description=CouchPotato application instance
+After=network.target
 
 [Service]
-	Type=simple
-	User=pi
-	WorkingDirectory=/opt/songkong
-	ExecStart=/bin/sh /opt/songkong/songkongremote.sh
-	Restart=always
-	RestartSec=60
+ExecStart=/opt/CouchPotatoServer/CouchPotato.py
+Type=simple
+User=pi
+Group=pi
+Restart=always
+RestartSec=2s
+
 [Install]
-	WantedBy=multi-user.target
--------------- SNIP ----------------
+WantedBy=multi-user.target
+------------------- SNIP -------------------
 ```
 oder über Repository
 ```bash
-sudo cp ~/Repo/Raspi/songkong/etc/systemd/system/* /etc/systemd/system/
-sudo chmod 644 /etc/systemd/system/songkong.service
+sudo cp ~/Repo/Raspi/couchpotato/etc/systemd/system/* /etc/systemd/system/
+sudo chmod 644 /etc/systemd/system/couchpotato.service
 ```
 
 Aktivieren und starten
 ```bash
-sudo systemctl enable songkong.service
-sudo systemctl start songkong.service
+sudo systemctl enable couchpotato.service
+sudo systemctl start couchpotato.service
 ```
 
 Jetzt sollte man (nach einer kleinen Vorlaufzeit) mittels eines Browsers auf `http://songkong:4567` zugreifen.
