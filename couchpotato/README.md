@@ -35,7 +35,7 @@ Wenn das alles funktioniert hat, dann sollte man mittels `ls -la /NAS/N1/Media/M
 Das gleiche mit dem Download Ordner
 
 
-## couchpotato
+## couchpotato  TODO
 ```bash
 cd /opt 
 http://www.jthink.net/songkong/de/download.jsp Headless! -> Link ermitteln 
@@ -46,7 +46,7 @@ sudo chown -R pi:pi songkong
 cd /opt/songkong
 ```
 
-### über systemd starten
+### über systemd starten  TODO
 Damit SongKong auch automatisch gestartet wird, benötge ich noch folgendes systemd Konfigfile
 ```bash
 sudo nano /etc/systemd/system/songkong.service
@@ -84,9 +84,9 @@ Jetzt sollte man (nach einer kleinen Vorlaufzeit) mittels eines Browsers auf `ht
 ### Sicherung der Config mittels Git
 Damit nur das gesichert wird, was wirklich benötigt ist:
 ```bash
-sudo systemctl stop songkong.service
+sudo systemctl stop couchpotato.service
 cd /home/pi
-mv .songkong <Verzeichnis im Repository>
+mv .couchpotato <Verzeichnis im Repository>
 ln -s <Verzeichnis im Repository> /home/pi/.songkong
 ```
 Um gewisse Unterverzeichnisse vom Git auszuschließen muss man das File .gitignore anlegen und editieren sieh [hier](https://github.com/gecompat/Public_RaspiConf/tree/master/System_Default#sicherung-der-config-files-mittels-git).
@@ -96,7 +96,7 @@ Um gewisse Unterverzeichnisse vom Git auszuschließen muss man das File .gitigno
 Damit ich auch vom Laptop aus einen Log ansehen kann, einfach meine Einstellungen und Reports sichern kann, leite ich das alles  auf mein lokales Verzeichnis, das mittels Samba freigegeben ist um.
 Dazu muss sichergestellt sein, dass `follow symlinks = yes` in der smb.conf aktiviert ist.
 ```bash
-ln -s <Verzeichnis im Repository> /smbshare/songkong
+ln -s <Verzeichnis im Repository> /smbshare/couchpotato
 ```
 
 
