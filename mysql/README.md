@@ -1,16 +1,15 @@
-# Raspi
-Dieses Repository zeigt, wie man 
+# Raspi Emby (MediaServer)
 
-- ## Das Rootsystem des Raspberry Pi 4 auf eine SSD legt
-- ## eine SD-Karte vorbereiten kann, die als "Quelle" für mehrere SSD's dient
-- ## folgende Applikationen installiert werden
 
-- ### NzbGet
-- ### Transmission
-- ### Headphones
-- ### CouchPotato
-- ### Medusa
-- ### SongKong
-- ### MySQL
 
+installation von [hier](https://emby.media/linux-server.html)  - Version armhf!
+```bash
+dpkg -i emby-server-deb_4.4.3.0_armhf.deb
+sudo systemctl stop emby-server.service
+sudo chown -R /var/lib/emby
+sudo nano /usr/lib/systemd/system/emby-server.service
+----------- SNIP --------------
+User=pi
+----------- SNIP --------------
+```
 
