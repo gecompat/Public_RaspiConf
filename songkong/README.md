@@ -102,7 +102,7 @@ cd /home/pi
 mv .songkong <Verzeichnis im Repository>
 ln -s <Verzeichnis im Repository> /home/pi/.songkong
 ```
-Um gewisse Unterverzeichnisse vom Git auszuschließen muss man das File .gitignore anlegen und editieren sieh hier.
+Um gewisse Unterverzeichnisse vom Git auszuschließen muss man das File .gitignore anlegen und editieren sieh [hier](https://github.com/gecompat/Public_RaspiConf/tree/master/System_Default#sicherung-der-config-files-mittels-git).
 
 
 ### Log und Config am Share "publizieren"
