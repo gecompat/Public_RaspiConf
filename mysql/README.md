@@ -11,5 +11,6 @@ sudo nano /usr/lib/systemd/system/emby-server.service
 ----------- SNIP --------------
 User=pi
 ----------- SNIP --------------
+sudo systemctl start emby-server.service
 ```
 
