@@ -2,6 +2,10 @@
 Dieses Repository zeigt, wie man Headphones am Raspberry Pi installiert
 
 ## Grundinstallation analog z.B. [Songkong]
+zusätzlich noch 
+```bash
+sudo apt-get install ffmpeg
+```
 
 ## Headphones
 
