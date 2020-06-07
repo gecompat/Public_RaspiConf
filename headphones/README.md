@@ -37,6 +37,12 @@ Group=pi
 WantedBy=multi-user.target
 
 -------------- SNIP -----------------
+
+headphones.ini anpassen:
+http_host = 0.0.0.0
+
+
+
 sudo systemctl enable headphones.service
 sudo systemctl start headphones.service
 sudo systemctl status headphones.service
