@@ -166,7 +166,6 @@ sudo chown root:root /smbshare/
 sudo chmod 777 /smbshare/
 sudo apt-get update
 --> ich übergebe mittels DHCP die WINS Server IP-Adresse (meine NAS)
-sudo apt-get install dhcp-client
 sudo apt-get install samba samba-common smbclient
 
 ---> abfrage, ob samba Informationen vom DHCP Server erhalten soll (NetBIOS-Name-Server)
@@ -177,6 +176,9 @@ sudo systemctl status nmbd.service
 
 Hinweis:  Q  für exit!
 
+
+sudo systemctl stop smbd.service
+sudo systemctl stop nmbd.service
 
 
 
